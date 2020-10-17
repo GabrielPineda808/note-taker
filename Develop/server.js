@@ -6,9 +6,12 @@ var app = express();
 var PORT = process.env.PORT || 8080;
 
 
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
 app.use(express.static("public"));
+
+//functions start here
+//also router mapping
 
 app.get("/notes", function(req, res) {
     res.sendFile(path.join(__dirname, "/public/notes.html"));
@@ -21,3 +24,18 @@ app.get("/api/notes", function(req, res) {
   app.get("*", function(req, res) {
     res.sendFile(path.join(__dirname, "/public/index.html"));
 });
+
+app.post("/api/notes", (req, res) => {
+    notes = fs.readFileSync("./db/db.json");
+    notes = JSON.parse(notes);
+    notes.push(req.body);
+    notes = JSON.stringify(notes);
+    res.json(notes);
+    fs.writeFileSync("./db/db.json", notes, "utf8");
+})
+
+
+
+app.listen(PORT, function() {
+    console.log("App listening on PORT " + PORT);
+  });
