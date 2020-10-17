@@ -10,9 +10,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
-//functions start here
-//also router mapping
-
 app.get("/notes", function(req, res) {
     res.sendFile(path.join(__dirname, "/public/notes.html"));
 });
@@ -35,18 +32,19 @@ app.post("/api/notes", (req, res) => {
 })
 
 app.delete("/api/notes/:id", (req, res) => {
+
     var notes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
     console.log(notes);
-    var id = req.params.id;
-    console.log(id);
-    var i = 0;
-    notes = notes.filter(res => {
-        return res.id != id;
+    var ID = req.params.ID;
+    console.log(ID);
+    var index = 0;
+    notes = notes.filter(answer => {
+        return answer.ID != ID;
     }
     )
-    for (res of notes) {
-        res.id = i.toString();
-        i++;
+    for (answer of notes) {
+        answer.ID = index.toString();
+        index++;
     }
     res.json(notes);
     fs.writeFileSync("./db/db.json", JSON.stringify(notes));
