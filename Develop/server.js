@@ -34,7 +34,24 @@ app.post("/api/notes", (req, res) => {
     fs.writeFileSync("./db/db.json", notes, "utf8");
 })
 
+app.delete("/api/notes/:id", (req, res) => {
+    var notes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
+    console.log(notes);
+    var id = req.params.id;
+    console.log(id);
+    var i = 0;
+    notes = notes.filter(res => {
+        return res.id != id;
+    }
+    )
+    for (res of notes) {
+        res.id = i.toString();
+        i++;
+    }
+    res.json(notes);
+    fs.writeFileSync("./db/db.json", JSON.stringify(notes));
 
+})
 
 app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
