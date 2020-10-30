@@ -2,7 +2,7 @@
 In this project i was able to create a note taking app that runs off of an express server in order to display and run both the html and js that handles added the notes and saving the m plus deleting whichever notes yo uplease
 
 ## How to use the app
-![Video of App](ezgif.com-gif-maker (1).gif)
+![VideoofApp](ezgif.com-gif-maker (1).gif)
 ## Image of the Website
 ![Website](notes.PNG)
 
