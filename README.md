@@ -32,6 +32,8 @@ In this project i was able to create a note taking app that runs off of an expre
 
 ## Github Repository
 - [Note Taker Repo](https://github.com/GabrielPineda808/note-taker)
+- [Deployed Site](https://cryptic-bayou-08665.herokuapp.com/)
+
 ## Authors
 
 * **Gabriel Pineda** 
